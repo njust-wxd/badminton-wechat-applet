@@ -1,6 +1,8 @@
 <template>
   <view>
-    <image  class="welcomePng" src="../../static/welcome.png" @click="onClick"></image>
+    <view class="view_players">
+      <text>请输入参赛人员姓名</text>
+    </view>
   </view>
 </template>
 
@@ -17,9 +19,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .view_players {
+		display: flex;
+		flex-direction: column;
+		margin-left: 40upx;
+		margin-right: 40upx;
+		margin-top: 60upx;
+	}
 
-  .welcomePng {
+  .text_note {
     width:100%;
     height:100vh;
+    
   }
 </style>

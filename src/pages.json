@@ -9,8 +9,15 @@
 		},{
 			"path": "pages/home/choose",
 			"style": {
-				"navigationBarTitleText": "首页",
+				"navigationBarTitleText": "",
 				"navigationStyle": "custom",
+				"pageOrientation": "auto"
+			}
+		},{
+			"path": "pages/home/player-input",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "default",
 				"pageOrientation": "auto"
 			}
 		}
