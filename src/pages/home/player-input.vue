@@ -9,12 +9,14 @@
         </view>
         <view class="separate_label"></view>
       </view>
-      <text class="player_submit">确定</text>
+      <text class="player_submit" @click="submit">确定</text>
     </view>
   </view>
 </template>
 
 <script>
+import ALGORITHM from "@/algorithm/match";
+
 export default {
   data() {
     return {
@@ -31,6 +33,10 @@ export default {
     });
   },
   methods: {
+    submit() {
+      var output = ALGORITHM.p4(this.playersNum);
+      console.log(output);
+    },
     onClick() {
       // uni.navigateTo({
       //   url: './choose',
