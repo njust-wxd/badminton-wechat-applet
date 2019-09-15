@@ -3,12 +3,12 @@
     <view class="view_select">
       <text class="text_note">请选择您的比赛方式：</text>
       <view class="view_select_1row">
-        <text class="btn_base" @click="onClick(4)">四人转</text>
-        <text class="btn_base btn_right" @click="onClick(5)">五人转</text>
+        <text class="btn_base" @click="onClick(4, '四人转')">四人转</text>
+        <text class="btn_base btn_right" @click="onClick(5, '>五人转')">五人转</text>
       </view>
       <view class="view_select_2row">
-        <text class="btn_base" @click="onClick(8)">八人转</text>
-        <text class="btn_base btn_right" @click="onClick(9)">九人转</text>
+        <text class="btn_base" @click="onClick(8, '八人转')">八人转</text>
+        <text class="btn_base btn_right" @click="onClick(9,'九人转')">九人转</text>
       </view>
     </view>
   </view>
@@ -17,9 +17,9 @@
 <script>
 export default {
   methods: {
-    onClick(type) {
+    onClick(num, title) {
       uni.navigateTo({
-        url: './player-input?type=' + type
+        url: './player-input?num=' + num + '&title=' + title
       });
     },
   },
