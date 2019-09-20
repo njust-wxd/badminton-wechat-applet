@@ -20,6 +20,13 @@
 				"navigationStyle": "default",
 				"pageOrientation": "auto"
 			}
+		},{
+			"path": "pages/home/match",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "default",
+				"pageOrientation": "auto"
+			}
 		}
 	],
 	"globalStyle": {

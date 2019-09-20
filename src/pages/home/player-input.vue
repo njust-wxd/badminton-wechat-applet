@@ -34,8 +34,11 @@ export default {
     },
     submit: function() {
       console.log(this.players);
-      var output = ALGORITHM.start_match(this.players);
-      console.log(output);
+      var games = ALGORITHM.start_match(this.players);
+      console.log(games);
+      uni.navigateTo({
+        url: './match?games='+encodeURIComponent(JSON.stringify(games))
+      });
     }
   }
 };
