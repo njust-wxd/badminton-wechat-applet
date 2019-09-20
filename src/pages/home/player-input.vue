@@ -2,10 +2,10 @@
   <view>
     <view class="view_players">
       <text class="text_note">请输入参赛人员姓名</text>
-      <view class="player_item" v-for="player in  playersNum" :key="player">
+      <view class="player_item" v-for="(item, index) in players" :key="index">
         <view class="player_info">
-          <text class="player_label">选手{{player}}：</text>
-          <input class="player_name" placeholder="请输入选手姓名" placeholder-class="placehold_note"/>
+          <text class="player_label">选手 {{index+1}}：</text>
+          <input class="player_name" v-model="players[index]" focus maxlength="10" placeholder="请输入选手姓名" placeholder-class="placehold_note"/>
         </view>
         <view class="separate_label"></view>
       </view>
@@ -20,27 +20,22 @@ import ALGORITHM from "@/algorithm/match";
 export default {
   data() {
     return {
-      playersNum: []
+      players: []
     };
   },
-  onLoad: function(option) {
-    for (var i = 1; i <= option.num; i++) {
-      this.playersNum.push(i);
-    }
-
-    uni.setNavigationBarTitle({
-      title: option.title
-    });
-  },
   methods: {
-    submit() {
-      var output = ALGORITHM.p4(this.playersNum);
-      console.log(output);
+    onLoad: function(option) {
+      for (let i = 0; i < option.num; i++) {
+        this.players.push('');
+      }
+      uni.setNavigationBarTitle({
+        title: option.title
+      });
     },
-    onClick() {
-      // uni.navigateTo({
-      //   url: './choose',
-      // });
+    submit: function() {
+      console.log(this.players);
+      var output = ALGORITHM.start_match(this.players);
+      console.log(output);
     }
   }
 };
