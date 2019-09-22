@@ -12,7 +12,7 @@ function match_recycle4(players: Array<String>): Array<any> {
 	console.log(players);
 	var games = [];
 	var game1 = {
-		index: 1,
+		index: "一",
 		player_a1: players[0],
 		player_a2: players[1],
 		player_b1: players[2],
@@ -21,7 +21,7 @@ function match_recycle4(players: Array<String>): Array<any> {
     games.push(game1);
         
     var game2 = {
-		index: 2,
+		index: "二",
 		player_a1: players[0],
 		player_a2: players[2],
 		player_b1: players[1],
@@ -30,7 +30,7 @@ function match_recycle4(players: Array<String>): Array<any> {
     games.push(game2);
         
     var game3 = {
-		index: 3,
+		index: "三",
 		player_a1: players[0],
 		player_a2: players[3],
 		player_b1: players[1],
@@ -44,7 +44,7 @@ function match_recycle5(players: Array<String>): Array<any> {
 	console.log(players);
 	var games = [];
 	var game1 = {
-		index: 1,
+		index: "一",
 		player_a1: players[0],
 		player_a2: players[1],
 		player_b1: players[2],
@@ -53,7 +53,7 @@ function match_recycle5(players: Array<String>): Array<any> {
     games.push(game1);
         
     var game2 = {
-		index: 2,
+		index: "二",
 		player_a1: players[1],
 		player_a2: players[2],
 		player_b1: players[4],
@@ -62,7 +62,7 @@ function match_recycle5(players: Array<String>): Array<any> {
 	games.push(game2);
     
     var game3 = {
-    	index: 3,
+    	index: "三",
     	player_a1: players[0],
     	player_a2: players[4],
     	player_b1: players[1],
@@ -71,7 +71,7 @@ function match_recycle5(players: Array<String>): Array<any> {
 	games.push(game3);
         
     var game4 = {
-		index: 4,
+		index: "四",
 		player_a1: players[0],
 		player_a2: players[2],
 		player_b1: players[1],
@@ -80,7 +80,7 @@ function match_recycle5(players: Array<String>): Array<any> {
     games.push(game4);
         
     var game5 = {
-		index: 5,
+		index: "五",
 		player_a1: players[0],
 		player_a2: players[3],
 		player_b1: players[4],
@@ -94,7 +94,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	console.log(players);
 	var games = [];
 	var game1 = {
-		index: 1,
+		index: "一",
 		player_a1: players[0],
 		player_a2: players[1],
 		player_b1: players[2],
@@ -103,7 +103,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game1);
 
 	var game2 = {
-		index: 2,
+		index: "二",
 		player_a1: players[4],
 		player_a2: players[5],
 		player_b1: players[6],
@@ -112,7 +112,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game2);
 
 	var game3 = {
-		index: 3,
+		index: "三",
 		player_a1: players[0],
 		player_a2: players[2],
 		player_b1: players[1],
@@ -121,7 +121,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game3);
 
 	var game4 = {
-		index: 4,
+		index: "四",
 		player_a1: players[4],
 		player_a2: players[6],
 		player_b1: players[5],
@@ -130,7 +130,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game4);
 
 	var game5 = {
-		index: 5,
+		index: "五",
 		player_a1: players[0],
 		player_a2: players[3],
 		player_b1: players[1],
@@ -139,7 +139,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game5);
 
 	var game6 = {
-		index: 6,
+		index: "六",
 		player_a1: players[4],
 		player_a2: players[7],
 		player_b1: players[5],
@@ -148,7 +148,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game6);
 
 	var game7 = {
-		index: 7,
+		index: "七",
 		player_a1: players[0],
 		player_a2: players[4],
 		player_b1: players[1],
@@ -157,7 +157,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game7);
 
 	var game8 = {
-		index: 8,
+		index: "八",
 		player_a1: players[2],
 		player_a2: players[6],
 		player_b1: players[3],
@@ -166,7 +166,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game8);
 
 	var game9 = {
-		index: 9,
+		index: "九",
 		player_a1: players[0],
 		player_a2: players[5],
 		player_b1: players[1],
@@ -175,7 +175,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game9);
 
 	var game10 = {
-		index: 10,
+		index: "十",
 		player_a1: players[2],
 		player_a2: players[7],
 		player_b1: players[3],
@@ -184,7 +184,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game10);
 
 	var game11 = {
-		index: 11,
+		index: "十一",
 		player_a1: players[0],
 		player_a2: players[6],
 		player_b1: players[1],
@@ -193,7 +193,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game11);
 
 	var game12 = {
-		index: 12,
+		index: "十二",
 		player_a1: players[2],
 		player_a2: players[4],
 		player_b1: players[3],
@@ -202,7 +202,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game12);
 
 	var game13 = {
-		index: 13,
+		index: "十三",
 		player_a1: players[0],
 		player_a2: players[7],
 		player_b1: players[1],
@@ -211,7 +211,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	games.push(game13);
 
 	var game14 = {
-		index: 14,
+		index: "十四",
 		player_a1: players[2],
 		player_a2: players[5],
 		player_b1: players[3],
@@ -225,7 +225,7 @@ function match_recycle9(players: Array<String>): Array<any> {
 	console.log(players);
 	var games = [];
 	var game1 = {
-		index: 1,
+		index: "一",
 		player_a1: players[0],
 		player_a2: players[8],
 		player_b1: players[2],
@@ -234,7 +234,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game1);
         
     var game2 = {
-		index: 2,
+		index: "二",
 		player_a1: players[4],
 		player_a2: players[5],
 		player_b1: players[6],
@@ -243,7 +243,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game2);
         
     var game3 = {
-		index: 3,
+		index: "三",
 		player_a1: players[2],
 		player_a2: players[8],
 		player_b1: players[1],
@@ -252,7 +252,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game3);
         
     var game4 = {
-		index: 4,
+		index: "四",
 		player_a1: players[4],
 		player_a2: players[6],
 		player_b1: players[5],
@@ -261,7 +261,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game4);
         
     var game5 = {
-		index: 5,
+		index: "五",
 		player_a1: players[0],
 		player_a2: players[3],
 		player_b1: players[1],
@@ -270,7 +270,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game5);
     
     var game6 = {
-		index: 6,
+		index: "六",
 		player_a1: players[4],
 		player_a2: players[8],
 		player_b1: players[5],
@@ -279,7 +279,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game6);
         
     var game7 = {
-		index: 7,
+		index: "七",
 		player_a1: players[0],
 		player_a2: players[4],
 		player_b1: players[1],
@@ -288,7 +288,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game7);
     
     var game8 = {
-		index: 8,
+		index: "八",
 		player_a1: players[2],
 		player_a2: players[6],
 		player_b1: players[3],
@@ -297,7 +297,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game8);
     
     var game9 = {
-		index: 9,
+		index: "九",
 		player_a1: players[0],
 		player_a2: players[5],
 		player_b1: players[1],
@@ -306,7 +306,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game9);
     
     var game10 = {
-		index: 10,
+		index: "十",
 		player_a1: players[2],
 		player_a2: players[7],
 		player_b1: players[3],
@@ -315,7 +315,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game10);
     
     var game11 = {
-		index: 11,
+		index: "十一",
 		player_a1: players[8],
 		player_a2: players[6],
 		player_b1: players[1],
@@ -324,7 +324,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game11);
     
     var game12 = {
-		index: 12,
+		index: "十二",
 		player_a1: players[2],
 		player_a2: players[4],
 		player_b1: players[3],
@@ -333,7 +333,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game12);
     
     var game13 = {
-		index: 13,
+		index: "十三",
 		player_a1: players[0],
 		player_a2: players[7],
 		player_b1: players[1],
@@ -342,7 +342,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game13);
     
     var game14 = {
-		index: 14,
+		index: "十四",
 		player_a1: players[8],
 		player_a2: players[5],
 		player_b1: players[3],
@@ -351,7 +351,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game14);
     
     var game15 = {
-		index: 15,
+		index: "十五",
 		player_a1: players[0],
 		player_a2: players[1],
 		player_b1: players[3],
@@ -360,7 +360,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game15);
     
     var game16 = {
-		index: 16,
+		index: "十六",
 		player_a1: players[2],
 		player_a2: players[5],
 		player_b1: players[7],
@@ -369,7 +369,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game16);
     
     var game17 = {
-		index: 17,
+		index: "十七",
 		player_a1: players[8],
 		player_a2: players[1],
 		player_b1: players[0],
@@ -378,7 +378,7 @@ function match_recycle9(players: Array<String>): Array<any> {
     games.push(game17);
     
     var game18 = {
-		index: 18,
+		index: "十八",
 		player_a1: players[0],
 		player_a2: players[6],
 		player_b1: players[7],
