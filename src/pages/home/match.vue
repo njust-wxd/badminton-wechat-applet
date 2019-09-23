@@ -24,7 +24,7 @@
         ></view>
       </view>
     </view>
-    <view class="game_container" v-for="(game, index) in games" :key="index">
+    <view class="game_container" v-for="(game, index) in not_play_games" :key="index">
       <image class="bg_container" src="../../static/game_container.png" />
       <view class="info_container">
         <text class="game_index_common list_game_index">第{{game.index}}场</text>
@@ -44,11 +44,11 @@
       <view class="pop_content">
         <image class="popup_bg" src="../../static/score_popup.png" />
         <view class="score_input_container">
-          <text class="game_index_common popup_game_index">第一场</text>
+          <text class="game_index_common popup_game_index">第{{current_play_game.index}}场</text>
           <text class="vs_in_popup">VS</text>
           <view class="players_common">
-            <text class="text_player player_a">奥迪、宝马</text>
-            <text class="text_player player_b">奔驰、大众</text>
+            <text class="text_player player_a">{{current_play_game.player_a1}}、{{current_play_game.player_a2}}</text>
+            <text class="text_player player_b">{{current_play_game.player_b1}}、{{current_play_game.player_b2}}</text>
           </view>
         </view>
         <view class="score_btn">
@@ -68,7 +68,9 @@ export default {
     return {
       btn_src: "../../static/score_icon_normal.png",
       isActive: true,
-      games: []
+      not_play_games: [],
+      played_games: [],
+      current_play_game: {}
     };
   },
   components: {
@@ -79,7 +81,7 @@ export default {
       uni.setNavigationBarTitle({
         title: "比赛进行中"
       });
-      this.games = JSON.parse(decodeURIComponent(option.games));
+      this.not_play_games = JSON.parse(decodeURIComponent(option.games));
     },
     display_matching: function() {
       this.isActive = !this.isActive;
@@ -89,7 +91,8 @@ export default {
     },
 
     startRecordScore: function(game) {
-      console.log("startRecordScore");
+      console.log(game);
+      this.current_play_game = game;
       this.$refs.popup.open();
     }
   }
