@@ -31,7 +31,7 @@
       <view v-show="current === 1">选项卡2的内容</view>
     </view>
 
-    <uni-popup class="pop_up" ref="popup" type="top" custom="true">
+    <uni-popup class="pop_up" ref="popup" type="top" custom="true" @change="changePopup">
       <view class="pop_content">
         <image class="popup_bg" src="../../static/score_popup.png" />
         <view class="score_input_container">
@@ -46,14 +46,39 @@
             >{{current_play_game.player_b1}}、{{current_play_game.player_b2}}</text>
           </view>
           <view class="score_input_view">
-            <view class="score_input_view_half"><input class="uni-input score_input_common score_input_left" type="number" /></view>
-            <view class="score_input_view_half"><input class="uni-input score_input_common score_input_right" type="number" /></view>
+            <view class="score_input_view_half">
+              <input
+                class="uni-input score_input_common"
+                v-model="player_score_a"
+                maxlength="2"
+                type="number"
+              />
+            </view>
+            <view class="score_colon"></view>
+            <view class="score_input_view_half">
+              <input
+                class="uni-input score_input_common"
+                v-model="player_score_b"
+                maxlength="2"
+                type="number"
+              />
+            </view>
           </view>
         </view>
-        <view class="score_btn">
-          <image class="score_img" :src="btn_src" />
-          <text>确定</text>
-        </view>
+        <button
+          class="score_btn_normal"
+          :class="{ score_btn_enable : player_score_a !== '' && player_score_b !== '' }"
+          :disabled="!player_score_a !== '' && player_score_b !== ''"
+        >
+          <image
+            class="score_img"
+            :src="player_score_a !== '' && player_score_b !== '' ? btn_img_score_confirm_enable : btn_img_score_confirm_disable"
+          />
+          <text
+            class="score_btn_text_normal"
+            :class="{score_btn_text_enable : player_score_a !== '' && player_score_b !== ''}"
+          >确定</text>
+        </button>
       </view>
     </uni-popup>
   </view>
@@ -70,7 +95,10 @@ export default {
       current: 0,
       activeColor: "rgba(75, 188, 149, 1)",
       styleType: "text",
-      btn_src: "../../static/score_icon_normal.png",
+      btn_img_score_confirm_disable: "../../static/score_icon_disable.png",
+      btn_img_score_confirm_enable: "../../static/score_icon_enable.png",
+      player_score_a: "",
+      player_score_b: "",
       not_play_games: [],
       played_games: [],
       current_play_game: {}
@@ -81,7 +109,7 @@ export default {
     uniPopup
   },
   methods: {
-    onLoad: function(option) {
+    onLoad(option) {
       uni.setNavigationBarTitle({
         title: "比赛进行中"
       });
@@ -92,10 +120,14 @@ export default {
         this.current = index;
       }
     },
-    startRecordScore: function(game) {
+    startRecordScore(game) {
       console.log(game);
       this.current_play_game = game;
       this.$refs.popup.open();
+    },
+    changePopup() {
+      this.player_score_a = '';
+      this.player_score_b = '';
     }
   }
 };
@@ -246,7 +278,6 @@ export default {
 }
 
 .score_input_view {
-  width: 100%;
   height: 76upx;
   display: flex;
   flex-direction: row;
@@ -254,25 +285,27 @@ export default {
 }
 
 .score_input_view_half {
-  width: 50%;
-  margin-top: 16upx;
-  margin-bottom: 16upx;
+  width: 72upx;
+}
+
+.score_colon {
+  width: 126upx;
 }
 
 .score_input_common {
   width: 56upx;
+  margin-top: 12upx;
+  margin-bottom: 12upx;
+  margin-left: 12upx;
   border-radius: 4upx 4upx 0upx 0upx;
+  font-size:40upx;
+  font-family:PingFangSC-Semibold,PingFangSC;
+  font-weight:600;
+  color:rgb(120, 223, 187);
+  line-height:67upx;
 }
 
-.score_input_left {
-  margin-left: 190upx;
-}
-
-.score_input_right {
-  margin-left: 80upx;
-}
-
-.score_btn {
+.score_btn_normal {
   height: 96upx;
   width: 686upx;
   margin-top: 40upx;
@@ -284,9 +317,29 @@ export default {
   align-items: center;
 }
 
+.score_btn_enable {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
 .score_img {
   width: 34upx;
   height: 34upx;
   margin-right: 18upx;
+}
+
+.score_btn_text_normal {
+  font-size: 36upx;
+  font-family: PingFangSC-Semibold, PingFangSC;
+  font-weight: 600;
+  color: rgba(187, 187, 187, 1);
+  line-height: 50upx;
+}
+
+.score_btn_text_enable {
+  color: rgba(56, 152, 119, 1);
 }
 </style>
