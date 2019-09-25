@@ -1,43 +1,34 @@
 <template>
   <view class="match_base">
-    <view class="view_tab">
-      <view class="view_tab_matching">
-        <text
-          class="text_tab_focus"
-          @click="display_matching"
-          :class="[isActive ? 'text_tab_focus' : 'text_tab_unfocus']"
-        >待进行比赛</text>
-        <view
-          class="tab_sep_common tab_sep_focus"
-          :class="[isActive ? 'tab_sep_focus' : 'tab_sep_unfocus']"
-        ></view>
-      </view>
-      <view class="view_tab_matched">
-        <text
-          class="text_tab_focus"
-          @click="display_matched"
-          :class="[isActive ? 'text_tab_unfocus' : 'text_tab_focus']"
-        >已完成比赛</text>
-        <view
-          class="tab_sep_common tab_sep_focus"
-          :class="[isActive ? 'tab_sep_unfocus' : 'tab_sep_focus']"
-        ></view>
-      </view>
+    <view class="uni-padding-wrap uni-common-mt">
+      <uni-segmented-control
+        :current="current"
+        :values="items"
+        :style-type="styleType"
+        :active-color="activeColor"
+        @clickItem="onClickItem"
+      />
     </view>
-    <view class="game_container" v-for="(game, index) in not_play_games" :key="index">
-      <image class="bg_container" src="../../static/game_container.png" />
-      <view class="info_container">
-        <text class="game_index_common list_game_index">第{{game.index}}场</text>
-        <text class="vs_in_list">VS</text>
-        <view class="players_common">
-          <text class="text_player player_a">{{game.player_a1}}、{{game.player_a2}}</text>
-          <text class="text_player player_b">{{game.player_b1}}、{{game.player_b2}}</text>
-        </view>
-        <view class="record_score_container" @click="startRecordScore(game)">
-          <image class="record_score_icon" src="../../static/record_score_icon.png" />
-          <text class="record_score">记录比分</text>
+
+    <view class="content">
+      <view v-show="current === 0">
+        <view class="game_container" v-for="(game, index) in not_play_games" :key="index">
+          <image class="bg_container" src="../../static/game_container.png" />
+          <view class="info_container">
+            <text class="game_index_common list_game_index">第{{game.index}}场</text>
+            <text class="vs_in_list">VS</text>
+            <view class="players_common">
+              <text class="text_player player_a">{{game.player_a1}}、{{game.player_a2}}</text>
+              <text class="text_player player_b">{{game.player_b1}}、{{game.player_b2}}</text>
+            </view>
+            <view class="record_score_container" @click="startRecordScore(game)">
+              <image class="record_score_icon" src="../../static/record_score_icon.png" />
+              <text class="record_score">记录比分</text>
+            </view>
+          </view>
         </view>
       </view>
+      <view v-show="current === 1">选项卡2的内容</view>
     </view>
 
     <uni-popup class="pop_up" ref="popup" type="top" custom="true">
@@ -47,8 +38,16 @@
           <text class="game_index_common popup_game_index">第{{current_play_game.index}}场</text>
           <text class="vs_in_popup">VS</text>
           <view class="players_common">
-            <text class="text_player player_a">{{current_play_game.player_a1}}、{{current_play_game.player_a2}}</text>
-            <text class="text_player player_b">{{current_play_game.player_b1}}、{{current_play_game.player_b2}}</text>
+            <text
+              class="text_player player_a"
+            >{{current_play_game.player_a1}}、{{current_play_game.player_a2}}</text>
+            <text
+              class="text_player player_b"
+            >{{current_play_game.player_b1}}、{{current_play_game.player_b2}}</text>
+          </view>
+          <view class="score_input_view">
+            <view class="score_input_view_half"><input class="uni-input score_input_common score_input_left" type="number" /></view>
+            <view class="score_input_view_half"><input class="uni-input score_input_common score_input_right" type="number" /></view>
           </view>
         </view>
         <view class="score_btn">
@@ -61,19 +60,24 @@
 </template>
 
 <script>
-import uniPopup from "@/pages/home/components/uni-popup.vue";
+import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue";
+import uniPopup from "@/components/uni-popup/uni-popup.vue";
 
 export default {
   data() {
     return {
+      items: ["待进行比赛", "已完成比赛"],
+      current: 0,
+      activeColor: "rgba(75, 188, 149, 1)",
+      styleType: "text",
       btn_src: "../../static/score_icon_normal.png",
-      isActive: true,
       not_play_games: [],
       played_games: [],
       current_play_game: {}
     };
   },
   components: {
+    uniSegmentedControl,
     uniPopup
   },
   methods: {
@@ -83,13 +87,11 @@ export default {
       });
       this.not_play_games = JSON.parse(decodeURIComponent(option.games));
     },
-    display_matching: function() {
-      this.isActive = !this.isActive;
+    onClickItem(index) {
+      if (this.current !== index) {
+        this.current = index;
+      }
     },
-    display_matched: function() {
-      this.isActive = !this.isActive;
-    },
-
     startRecordScore: function(game) {
       console.log(game);
       this.current_play_game = game;
@@ -104,59 +106,6 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 43upx;
-}
-
-.view_tab {
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-}
-
-.view_tab_matching {
-  display: flex;
-  flex-direction: column;
-}
-
-.view_tab_matched {
-  display: flex;
-  flex-direction: column;
-  margin-left: 91upx;
-}
-
-.text_tab_focus {
-  height: 50upx;
-  font-size: 36upx;
-  font-family: PingFangSC;
-  font-weight: 600;
-  color: rgba(51, 51, 51, 1);
-  line-height: 50upx;
-}
-
-.text_tab_unfocus {
-  height: 48upx;
-  font-size: 34upx;
-  font-family: PingFangSC;
-  font-weight: 400;
-  color: rgba(102, 102, 102, 1);
-  line-height: 48upx;
-}
-
-.tab_sep_common {
-  width: 67upx;
-  height: 8upx;
-  border-radius: 8upx;
-  margin-top: 15upx;
-  margin: 0 auto;
-}
-
-.tab_sep_focus {
-  background-color: rgba(75, 188, 149, 1);
-  // display: block;
-}
-
-.tab_sep_unfocus {
-  background-color: transparent;
-  // display: none;
 }
 
 .game_container {
@@ -208,6 +157,7 @@ export default {
   font-family: PingFangSC-Regular, PingFangSC;
   font-weight: 400;
   line-height: 48upx;
+  overflow: hidden;
 }
 
 .player_a {
@@ -293,6 +243,33 @@ export default {
   font-weight: 600;
   color: rgba(75, 188, 149, 1);
   line-height: 48upx;
+}
+
+.score_input_view {
+  width: 100%;
+  height: 76upx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 74upx;
+}
+
+.score_input_view_half {
+  width: 50%;
+  margin-top: 16upx;
+  margin-bottom: 16upx;
+}
+
+.score_input_common {
+  width: 56upx;
+  border-radius: 4upx 4upx 0upx 0upx;
+}
+
+.score_input_left {
+  margin-left: 190upx;
+}
+
+.score_input_right {
+  margin-left: 80upx;
 }
 
 .score_btn {
