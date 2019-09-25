@@ -87,6 +87,7 @@
 <script>
 import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue";
 import uniPopup from "@/components/uni-popup/uni-popup.vue";
+import { BMGame } from "@/algorithm/game";
 
 export default {
   data() {
@@ -101,7 +102,7 @@ export default {
       player_score_b: "",
       not_play_games: [],
       played_games: [],
-      current_play_game: {}
+      current_play_game: BMGame
     };
   },
   components: {
