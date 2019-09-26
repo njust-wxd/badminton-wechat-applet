@@ -10,7 +10,7 @@ function shuffle(arr: Array<any>) {
 	}
 }
 
-function match_recycle4(players: Array<String>): Array<any> {
+function match_recycle4(players: Array<string>): Array<any> {
 	console.log(players);
 	let games : Array<BMGame> = [];
 	let game1 = new BMGame("一");
@@ -36,7 +36,7 @@ function match_recycle4(players: Array<String>): Array<any> {
 	return games;
 }
 
-function match_recycle5(players: Array<String>): Array<any> {
+function match_recycle5(players: Array<string>): Array<any> {
 	console.log(players);
 	let games : Array<BMGame> = [];
 	let game1 = new BMGame("一");
@@ -76,7 +76,7 @@ function match_recycle5(players: Array<String>): Array<any> {
 	return games;
 }
 
-function match_recycle8(players: Array<String>): Array<any> {
+function match_recycle8(players: Array<string>): Array<any> {
 	console.log(players);
 	let games : Array<BMGame> = [];
 	let game1 =  new BMGame("一");
@@ -179,7 +179,7 @@ function match_recycle8(players: Array<String>): Array<any> {
 	return games;
 }
 
-function match_recycle9(players: Array<String>): Array<any> {
+function match_recycle9(players: Array<string>): Array<any> {
 	console.log(players);
 	let games : Array<BMGame> = [];
 	let game1 = new BMGame("一");
@@ -311,7 +311,7 @@ function match_recycle9(players: Array<String>): Array<any> {
 }
 
 var ALGORITHM = {
-	start_match(players: Array<String>) {
+	start_match(players: Array<string>) {
 		let games : Array<BMGame> = [];
 		shuffle(players);
 		switch (players.length) {

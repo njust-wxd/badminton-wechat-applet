@@ -1,15 +1,15 @@
 export class BMGame {
-    readonly index: String;
-    type: String = 'double';
-    player_a1: String = '';
-    player_a2: String = '';
-    player_b1: String = '';
-    player_b2: String = '';
-    score_a: Number = 0;
-    score_b: Number = 0;
-    net_score_ab: Number = 0;
-    net_score_ba: Number = 0;
-    constructor(index: String) {
+    readonly index: string;
+    type: string = 'double';
+    player_a1: string = '';
+    player_a2: string = '';
+    player_b1: string = '';
+    player_b2: string = '';
+    score_a: string = '';
+    score_b: string = '';
+    net_score_ab: number = 0;
+    net_score_ba: number = 0;
+    constructor(index: string) {
         this.index = index;
     }
 }

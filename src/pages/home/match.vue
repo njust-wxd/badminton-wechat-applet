@@ -31,7 +31,7 @@
       <view v-show="current === 1">选项卡2的内容</view>
     </view>
 
-    <uni-popup class="pop_up" ref="popup" type="top" custom="true" @change="changePopup">
+    <uni-popup class="pop_up" ref="popup" type="top" custom="true">
       <view class="pop_content">
         <image class="popup_bg" src="../../static/score_popup.png" />
         <view class="score_input_container">
@@ -49,7 +49,7 @@
             <view class="score_input_view_half">
               <input
                 class="uni-input score_input_common"
-                v-model="player_score_a"
+                v-model="current_play_game.score_a"
                 maxlength="2"
                 type="number"
               />
@@ -58,7 +58,7 @@
             <view class="score_input_view_half">
               <input
                 class="uni-input score_input_common"
-                v-model="player_score_b"
+                v-model="current_play_game.score_b"
                 maxlength="2"
                 type="number"
               />
@@ -67,16 +67,16 @@
         </view>
         <button
           class="score_btn_normal"
-          :class="{ score_btn_enable : player_score_a !== '' && player_score_b !== '' }"
-          :disabled="!player_score_a !== '' && player_score_b !== ''"
+          :class="{ score_btn_enable : isScoreInput() }"
+          :disabled="isScoreInput() ? false : true"
         >
           <image
             class="score_img"
-            :src="player_score_a !== '' && player_score_b !== '' ? btn_img_score_confirm_enable : btn_img_score_confirm_disable"
+            :src="isScoreInput() ? btn_img_score_confirm_enable : btn_img_score_confirm_disable"
           />
           <text
             class="score_btn_text_normal"
-            :class="{score_btn_text_enable : player_score_a !== '' && player_score_b !== ''}"
+            :class="{score_btn_text_enable : isScoreInput()}"
           >确定</text>
         </button>
       </view>
@@ -87,7 +87,6 @@
 <script>
 import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue";
 import uniPopup from "@/components/uni-popup/uni-popup.vue";
-import { BMGame } from "@/algorithm/game";
 
 export default {
   data() {
@@ -98,11 +97,9 @@ export default {
       styleType: "text",
       btn_img_score_confirm_disable: "../../static/score_icon_disable.png",
       btn_img_score_confirm_enable: "../../static/score_icon_enable.png",
-      player_score_a: "",
-      player_score_b: "",
       not_play_games: [],
       played_games: [],
-      current_play_game: BMGame
+      current_play_game: {}
     };
   },
   components: {
@@ -126,10 +123,9 @@ export default {
       this.current_play_game = game;
       this.$refs.popup.open();
     },
-    changePopup() {
-      this.player_score_a = '';
-      this.player_score_b = '';
-    }
+    isScoreInput() {
+      return (this.current_play_game.score_a !== '' && this.current_play_game.score_b !== '');
+    },
   }
 };
 </script>
