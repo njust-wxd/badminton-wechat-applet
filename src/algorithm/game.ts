@@ -1,4 +1,5 @@
 export class BMGame {
+    readonly id: number;
     readonly index: string;
     type: string = 'double';
     player_a1: string = '';
@@ -9,7 +10,8 @@ export class BMGame {
     score_b: string = '';
     net_score_ab: number = 0;
     net_score_ba: number = 0;
-    constructor(index: string) {
+    constructor(id: number, index: string) {
+        this.id = id;
         this.index = index;
     }
 }
