@@ -1,4 +1,5 @@
 import { BMGame } from "@/algorithm/game";
+import { BMPlayer } from '@/algorithm/player';
 
 function shuffle(arr: Array<any>) {
 	let len = arr.length;
@@ -310,6 +311,93 @@ function match_recycle9(players: Array<string>): Array<any> {
 	return games;
 }
 
+function compare(player1: BMPlayer, player2: BMPlayer) : number {
+	if (player1.win_times > player2.win_times) {
+		return 1;
+	}
+	else if (player1.win_times < player2.win_times) {
+		return -1;
+	}
+	else { // win times 相同
+		if (player1.net_score > player2.net_score) {
+			return 1;
+		}
+		else if (player1.net_score < player2.net_score) {
+			return -1;
+		}
+		else {
+			return 0;
+		}
+	}
+}
+
+function gen_rank(players: Array<BMPlayer>, games: Array<BMGame>): Array<BMPlayer> {
+	// 汇总结果
+	games.forEach(game => {
+		let playerA1 = players.find(player => player.name === game.player_a1);
+		let playerA2 = players.find(player => player.name === game.player_a2);
+		let playerB1 = players.find(player => player.name === game.player_b1);
+		let playerB2 = players.find(player => player.name === game.player_b2);
+		if (playerA1 !== undefined && playerA2 !== undefined
+			&& playerB1 !== undefined && playerB2 !== undefined) {
+			playerA1.net_score += game.net_score_ab;
+			playerA2.net_score += game.net_score_ab;
+			playerB1.net_score += game.net_score_ba;
+			playerB2.net_score += game.net_score_ba;
+			if (game.net_score_ab > 0) {
+				playerA1.win_times ++;
+				playerA2.win_times ++;
+				playerB1.lose_times ++;
+				playerB2.lose_times ++;
+			}
+			if (game.net_score_ba > 0) {
+				playerA1.lose_times ++;
+				playerA2.lose_times ++;
+				playerB1.win_times ++;
+				playerB2.win_times ++;
+			}
+		}
+		else {
+			console.log('not find player');
+			return [];
+		}
+	});
+
+	// 排序
+	players.sort((player1, player2) => {
+		if (player1.win_times < player2.win_times) {
+			return 1;
+		}
+		else if (player1.win_times > player2.win_times) {
+			return -1;
+		}
+		else { // win times 相同
+			if (player1.net_score < player2.net_score) {
+				return 1;
+			}
+			else if (player1.net_score > player2.net_score) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
+		}
+	});
+
+	// 设置rank
+	for (let i = 1; i < players.length; i++) {
+		if (players[i].win_times === players[i-1].win_times
+			&& players[i].net_score === players[i-1].net_score) {
+			players[i].rank = players[i-1].rank;
+		}
+		else {
+			players[i].rank = i+1;
+		}
+	}
+
+	return players;
+}
+
 var ALGORITHM = {
 	start_match(players: Array<string>) {
 		let games : Array<BMGame> = [];
@@ -332,6 +420,17 @@ var ALGORITHM = {
 				break;
 		}
 		return games;
+	},
+	rank(names: Array<string>, games: Array<BMGame>) {
+		console.log("player num: " + names.length);
+		console.log("game num: " + games.length);
+		let players: Array<BMPlayer> = [];
+		names.forEach(name => {
+			let player: BMPlayer = new BMPlayer();
+			player.name = name;
+			players.push(player);
+		});
+		return gen_rank(players, games);
 	}
 }
 

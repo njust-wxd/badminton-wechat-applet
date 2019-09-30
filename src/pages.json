@@ -27,6 +27,13 @@
 				"navigationStyle": "default",
 				"pageOrientation": "auto"
 			}
+		},{
+			"path": "pages/home/result",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "default",
+				"pageOrientation": "auto"
+			}
 		}
 	],
 	"globalStyle": {

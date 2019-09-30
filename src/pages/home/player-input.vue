@@ -5,7 +5,14 @@
       <view class="player_item" v-for="(item, index) in players" :key="index">
         <view class="player_info">
           <text class="player_label">选手 {{index+1}}：</text>
-          <input class="player_name" v-model="players[index]" focus maxlength="10" placeholder="请输入选手姓名" placeholder-class="placehold_note"/>
+          <input
+            class="player_name"
+            v-model="players[index]"
+            focus
+            maxlength="10"
+            placeholder="请输入选手姓名"
+            placeholder-class="placehold_note"
+          />
         </view>
         <view class="separate_label"></view>
       </view>
@@ -26,7 +33,7 @@ export default {
   methods: {
     onLoad: function(option) {
       for (let i = 0; i < option.num; i++) {
-        this.players.push('');
+        this.players.push("");
       }
       uni.setNavigationBarTitle({
         title: option.title
@@ -37,7 +44,11 @@ export default {
       var games = ALGORITHM.start_match(this.players);
       console.log(games);
       uni.navigateTo({
-        url: './match?games='+encodeURIComponent(JSON.stringify(games))
+        url:
+          "./match?players=" +
+          encodeURIComponent(JSON.stringify(this.players)) +
+          "&games=" +
+          encodeURIComponent(JSON.stringify(games))
       });
     }
   }

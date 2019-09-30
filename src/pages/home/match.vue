@@ -69,7 +69,7 @@
           class="view_result_container"
           :class="{ view_result_container_display : not_play_games.length == 0 && played_games.length != 0}"
         >
-          <text class="view_result_note">比赛结束，查看结果</text>
+          <text class="view_result_note" @click="view_result">比赛结束，查看结果</text>
           <image class="view_result_icon" src="../../static/view_result_icon.png" />
         </view>
       </view>
@@ -128,6 +128,7 @@
 <script>
 import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue";
 import uniPopup from "@/components/uni-popup/uni-popup.vue";
+import ALGORITHM from '../../algorithm/match';
 
 export default {
   data() {
@@ -138,6 +139,7 @@ export default {
       styleType: "text",
       btn_img_score_confirm_disable: "../../static/score_icon_disable.png",
       btn_img_score_confirm_enable: "../../static/score_icon_enable.png",
+      players_names: [],
       not_play_games: [],
       played_games: [],
       current_play_game: {}
@@ -152,6 +154,7 @@ export default {
       uni.setNavigationBarTitle({
         title: "比赛进行中"
       });
+      this.players_names = JSON.parse(decodeURIComponent(option.players));
       this.not_play_games = JSON.parse(decodeURIComponent(option.games));
     },
     onClickItem(index) {
@@ -192,6 +195,14 @@ export default {
       console.log(played_game);
       this.current_play_game = played_game;
       this.$refs.popup.open();
+    },
+    view_result() {
+      let rank_players = ALGORITHM.rank(this.players_names, this.played_games);
+      console.log(rank_players);
+      uni.navigateTo({
+        url: './result?rank_players=' + 
+        encodeURIComponent(JSON.stringify(rank_players))
+      });
     }
   }
 };
