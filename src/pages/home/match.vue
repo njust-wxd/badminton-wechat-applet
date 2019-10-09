@@ -37,7 +37,7 @@
             :src="played_game.score_a === played_game.score_b ? '' : '../../static/win.png'"
           />
           <view class="modify_score_container" @click="modifyScore(played_game)">
-            <image class="modify_score_icon" src="../../static/record_score_icon.png" />
+            <image class="modify_score_icon" src="../../static/modify_score_icon.png" />
             <text class="modify_score_text">修改比分</text>
           </view>
           <view class="played_game_info_container">
