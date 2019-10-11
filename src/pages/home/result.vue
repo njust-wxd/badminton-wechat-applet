@@ -1,37 +1,38 @@
 <template>
-  <view class="view_base">
-    <t-table class="table_wrap">
-      <t-tr class="head_common" align="center">
-        <t-th>姓名</t-th>
-        <t-th>胜(场)</t-th>
-        <t-th>负(场)</t-th>
-        <t-th>净胜分</t-th>
-        <t-th>名次</t-th>
-      </t-tr>
-      <t-tr class="item_common" v-for="(player, index) in rank_players" :key="index">
-        <t-td class="item_name">{{ player.name }}</t-td>
-        <t-td>{{ player.win_times }}</t-td>
-        <t-td>{{ player.lose_times }}</t-td>
-        <t-td>{{ player.net_score }}</t-td>
-        <t-td>{{ player.rank }}</t-td>
-      </t-tr>
-    </t-table>
+  <view class="container">
+    <view class="table">
+      <view class="tr tr_head">
+        <text class="th col_name">姓名</text>
+        <text class="th">胜(场)</text>
+        <text class="th">负(场)</text>
+        <text class="th">净胜分</text>
+        <text class="th">名次</text>
+      </view>
+      <view v-for="(player, index) in rank_players" :key="index">
+        <view class="tr">
+          <view class="champion_view" v-if="player.rank === 1">
+            <image class="champion_bg" src="../../static/champion_bg.png" />
+            <image class="champion_crown" src="../../static/crown.png"/>
+          </view>
+  
+          <text class="td col_name td_name" 
+            :class="{ champion_color : player.rank === 1 }">{{ player.name }}</text>
+          <text class="td td_win_times" 
+             :class="{ champion_color : player.rank === 1 }">{{ player.win_times }}</text>
+          <text class="td td_lose_times" 
+             :class="{ champion_color : player.rank === 1 }">{{ player.lose_times }}</text>
+          <text class="td td_net_score" 
+             :class="{ champion_color : player.rank === 1 }">{{ player.net_score }}</text>
+          <text class="td td_rank" :class="{ rank_style_123 : player.rank < 4 }">{{ player.rank }}</text>
+        </view>
+        <view class="seprator"></view>
+      </view>
+    </view>
   </view>
 </template>
 
 <script>
-import tTable from "@/components/t-table/t-table.vue";
-import tTh from "@/components/t-table/t-th.vue";
-import tTr from "@/components/t-table/t-tr.vue";
-import tTd from "@/components/t-table/t-td.vue";
-
 export default {
-  components: {
-    tTable,
-    tTh,
-    tTr,
-    tTd
-  },
   data() {
     return {
       rank_players: []
@@ -50,19 +51,58 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.view_base {
+.container {
   width: 100%;
   margin-top: 32upx;
 }
 
-.table_wrap {
+.table {
   width: 100%;
-  border: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.head_common {
+.tr {
+  width: 100%;
   height: 96upx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tr_head {
   background: rgba(245, 245, 245, 1);
+}
+
+.th {
+  width: 20%;
+  font-size: 28upx;
+  font-family: PingFangSC-Regular, PingFangSC;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40upx;
+  text-align: center;
+}
+
+.td {
+  width: 20%;
+  text-align: center;
+}
+
+.col_name {
+  margin-left: 32upx;
+  text-align: left;
+}
+
+.td_name {
+  font-size: 28upx;
+  font-family: PingFangSC-Semibold, PingFangSC;
+  font-weight: 600;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40upx;
+}
+
+.td_win_times {
   font-size: 28upx;
   font-family: PingFangSC-Regular, PingFangSC;
   font-weight: 400;
@@ -70,13 +110,67 @@ export default {
   line-height: 40upx;
 }
 
-.item_common {
-  height: 96upx;
-  background: rgba(255, 255, 255, 1);
+.td_lose_times {
   font-size: 28upx;
   font-family: PingFangSC-Regular, PingFangSC;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   line-height: 40upx;
+}
+
+.td_net_score {
+  font-size: 28upx;
+  font-family: PingFangSC-Regular, PingFangSC;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40upx;
+}
+
+.td_rank {
+  font-size: 32upx;
+  font-family: PingFangSC-Regular, PingFangSC;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 45upx;
+}
+
+.seprator {
+  margin-left: 32upx;
+  margin-right: 32upx;
+  height: 2upx;
+  background: #e7e7e7;
+}
+
+.champion_view {
+  width:748upx;
+  height:96upx;
+  position: absolute;
+  z-index: -1;
+}
+
+.champion_bg {
+  width:748upx;
+  height:96upx;
+  position: absolute;
+  z-index: -1;
+}
+
+.champion_crown {
+  width:40upx;
+  height:29upx;
+  left: 53upx;
+  top: 4upx;
+  position: absolute;
+  z-index: 1;
+}
+
+.champion_color {
+  color:rgba(151,102,0,1);
+}
+
+.rank_style_123 {
+  font-family:PingFangSC-Semibold,PingFangSC;
+  font-weight:600;
+  color:rgba(188,155,0,1);
 }
 </style>
